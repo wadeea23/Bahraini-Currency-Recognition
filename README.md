@@ -61,4 +61,4 @@ Users can upload images or use a live camera to detect Bahraini currency.
 
 ## Author
 
-**WADEEA ALMUTAWA**
+**WADEEA ALMUTAWA** 'https://app.roboflow.com/wadia-almutaweaa/bahraini_currency_recognition_w/train'
