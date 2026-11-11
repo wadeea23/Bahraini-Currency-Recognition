@@ -1,3 +1,4 @@
+
 import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
@@ -14,23 +15,41 @@ st.header("Upload Image")
 
 file = st.file_uploader("Choose an image", type=["jpg", "png", "jpeg"])
 
-if file:
+if file is not None:
+
     img = Image.open(file).convert("RGB")
 
     result = model(img)[0]
 
-    st.image(result.plot(), caption="Prediction")
+    st.image(result.plot(), channels="BGR")
+
+    if len(result.boxes) > 0:
+        st.success("Currency detected!")
+
+        for box in result.boxes:
+            class_id = int(box.cls[0])
+            confidence = float(box.conf[0])
+
+            st.write("Currency:", model.names[class_id])
+            st.write("Confidence:", f"{confidence:.2%}")
+
+    else:
+        st.warning("No currency detected.")
 
 
 # Live Camera
 st.header("Live Camera")
 
 def camera(frame):
+
     img = frame.to_ndarray(format="bgr24")
 
     result = model(img)[0]
 
-    return av.VideoFrame.from_ndarray(result.plot(), format="bgr24")
+    return av.VideoFrame.from_ndarray(
+        result.plot(),
+        format="bgr24"
+    )
 
 
 webrtc_streamer(
