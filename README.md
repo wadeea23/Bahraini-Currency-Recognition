@@ -38,7 +38,7 @@ The application was built using Streamlit to provide a simple and user-friendly 
 
 Users can upload images or use a live camera to detect Bahraini currency.
 
-**Live Demo:** [Bahraini Currency Recognition](https://bahraini-currency-recognition-wadeea.streamlit.app/)
+**Live Demo:** "https://bahraini-currency-recognition-wadeea1.streamlit.app/"
 
 ## Limitations
 
